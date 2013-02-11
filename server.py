@@ -1,15 +1,16 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, send_from_directory
+import os
 
-my_app = Flask(__name__)
+app = Flask(__name__)
 
 
-@my_app.route('/hello/')
+@app.route('/hello/')
 def hello():
     return "Hello.  How are you today?"
 
 
-@my_app.route('/goodbye/')
-@my_app.route('/goodbye/<your_name>/')
+@app.route('/goodbye/')
+@app.route('/goodbye/<your_name>/')
 def goodbye(your_name="Anonymous User"):
     return "Goodbye {}".format(your_name)
 
@@ -22,7 +23,7 @@ def create_url_html(method_name, link_text=None):
     return "<li><a href='{}'>{}</a></li>".format(url, link_text)
 
 
-@my_app.route('/')
+@app.route('/')
 def index():
     urls = "<ul>"
     urls += create_url_html('hello')
@@ -36,27 +37,27 @@ def index():
     return urls
 
 
-@my_app.route('/GroupOne/')
+@app.route('/GroupOne/')
 def group_one():
     return "Welcome group one, develop here."
 
 
-@my_app.route('/GroupTwo/')
+@app.route('/GroupTwo/')
 def group_two():
     return "Welcome group two, develop here"
 
 
-@my_app.route('/GroupThree/')
+@app.route('/GroupThree/')
 def group_three():
     return "Welcome group three, develop here"
 
 
-@my_app.route('/GroupFour/')
+@app.route('/GroupFour/')
 def group_four():
     return "Welcome group four, develop here"
 
 
-@my_app.route('/GroupFive/')
+@app.route('/GroupFive/')
 def group_five():
     return "Welcome group five, develop here"
 
@@ -68,4 +69,5 @@ if __name__ == "__main__":
     debug -- set to True to reload every time a change is detected: very useful! (default False)
 
     """
-    my_app.run(host='localhost', port=5678, debug=True)
+    app.run(host='localhost', port=5000, debug=True)
+    app.add_url_rule('/favicon.ico/', redirect_to=url_for('static', filename='favicon.ico'))
