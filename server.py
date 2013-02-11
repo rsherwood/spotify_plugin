@@ -38,7 +38,7 @@ def index():
 
 @my_app.route('/GroupOne/')
 def group_one():
-    return "Welcome group one, develop here"
+    return "Welcome group one, develop here."
 
 
 @my_app.route('/GroupTwo/')
