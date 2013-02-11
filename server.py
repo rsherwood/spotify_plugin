@@ -1,5 +1,4 @@
 from flask import Flask, url_for
-from RS.rs import page_rs
 
 my_app = Flask(__name__)
 
