@@ -39,7 +39,7 @@ def index():
 
 @app.route('/GroupOne')
 def group_one():
-    name = request.args['name']
+    name = request.args.get('name', '')
     lower_name = name.lower()
     vowels = ['a','e','i','o','u']
     score = 0
