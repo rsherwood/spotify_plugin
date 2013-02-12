@@ -39,10 +39,10 @@ def index():
 @app.route('/GroupOne')
 def group_one():
     name = request.args.get('name', '')
-    lower_name = name.lower()
+    formatted_name = name.lower().replace(' ', '')
     vowels = ['a','e','i','o','u']
     score = 0
-    for i in lower_name:
+    for i in formatted_name:
         score += 5 if i in vowels else 1
 
     return render_template('groupOneForm.html', name=name, score=score)
