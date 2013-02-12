@@ -1,5 +1,6 @@
-from flask import Flask, url_for, send_from_directory
+from flask import Flask, url_for, send_from_directory, render_template, request
 import os
+from spotify_plugin import templates
 
 app = Flask(__name__)
 
@@ -36,11 +37,16 @@ def index():
     urls += "</ul>"
     return urls
 
-
-@app.route('/GroupOne/')
+@app.route('/GroupOne')
 def group_one():
-    return "Welcome group one, develop here."
+    name = request.args['name']
+    lower_name = name.lower()
+    vowels = ['a','e','i','o','u']
+    score = 0
+    for i in lower_name:
+        score += 5 if i in vowels else 1
 
+    return render_template('groupOneForm.html', name=name, score=score)
 
 @app.route('/GroupTwo/')
 def group_two():
@@ -70,4 +76,5 @@ if __name__ == "__main__":
 
     """
     app.run(host='localhost', port=5000, debug=True)
+    app.template_folder = templates
     app.add_url_rule('/favicon.ico/', redirect_to=url_for('static', filename='favicon.ico'))
