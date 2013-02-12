@@ -1,6 +1,5 @@
 from flask import Flask, url_for, send_from_directory, render_template, request
 import os
-from spotify_plugin import templates
 
 app = Flask(__name__)
 
