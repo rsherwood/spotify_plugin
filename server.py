@@ -1,5 +1,4 @@
 from flask import Flask, url_for, send_from_directory, render_template, request
-import os
 
 app = Flask(__name__)
 

@@ -1,16 +1,14 @@
-__author__ = 'russell.sherwood@bskyb.com'
 from flask import Flask, url_for, send_from_directory, render_template, request
-import os
-import urllib
 import urllib2
 import json
 from urllib2 import HTTPError
 
 app = Flask(__name__)
 
+
 def create_url_html(method_name, link_text=None):
-    if link_text==None:
-        link_text=method_name
+    if not link_text:
+        link_text = method_name
 
     url = url_for(method_name)
     return "<li><a href='{}'>{}</a></li>".format(url, link_text)
